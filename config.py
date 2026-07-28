@@ -1,3 +1,5 @@
+#/data_generator
+SEED=42
 NUM_USERS = 500
 INIT_USERS = 1
 FINAL_USERS = 51
