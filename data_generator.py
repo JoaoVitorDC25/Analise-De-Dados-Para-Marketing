@@ -1,10 +1,13 @@
 import numpy as np
 
 import config as cfg
-import utils as ut
 
-def data_generator_ecommmerce():
-    
+def data_generator_ecommmerce() -> np.column_stack:
+
+    '''
+        Gera uma base de dados de ecommerce
+    '''
+        
     np.random.seed(cfg.SEED)
 
     visitas=np.random.randint(cfg.INIT_USERS, cfg.FINAL_USERS, size=cfg.NUM_USERS)

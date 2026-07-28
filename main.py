@@ -1,9 +1,6 @@
 import numpy as np
 import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
 
-import config as cfg
 import utils as ut
 import data_generator as dg
 import charts as ch
@@ -11,11 +8,6 @@ import charts as ch
 dados_ecommerce=dg.data_generator_ecommmerce()
 
 ut.clear()
-
-# ut.text(f"Shape da nossa massa de dados: {dados_ecommerce.shape}",
-#         "Exemplo dos 5 primeiros usuarios: \n",
-#         "\n Colunas: [Visitas, Tempo no site (min), Itens no Carrinho, Valor da compra(R$)] \n\n",
-#         dados_ecommerce[:5])
 
 print("\n Shape da nossa massa de dados:", dados_ecommerce.shape)
 print("\n Exemplo dos 5 primeiros usuarios:")
@@ -89,9 +81,7 @@ print(np.round(matriz_correlacao,2))
 nomes_variaveis = ["Visitas", "Tempo no Site", "Itens no Carrinho", "Valor da Compra"]
 
 #Converter para Dataframe
-df_correlacao = pd.DataFrame(matriz_correlacao,
-                             index = nomes_variaveis,
-                             columns = nomes_variaveis)
+df_correlacao = pd.DataFrame(matriz_correlacao, index = nomes_variaveis, columns = nomes_variaveis)
 
 #Matriz de correlação (mapa de calor)
 ch.heatmap_graphic(
