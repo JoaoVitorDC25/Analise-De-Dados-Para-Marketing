@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import config as cfg
 import utils as ut
 import data_generator as dg
+import charts as ch
 
 dados_ecommerce=dg.data_generator_ecommmerce()
 
@@ -55,18 +56,14 @@ print(f"Maior Valor de Compra: R$ {max_valor:.2f}")
 print(f"Menor Valor de Compra: R$ {min_valor_positivo:.2f}")
 
 #Grafico
-plt.figure(figsize=cfg.FIG_SIZE_HIST)
-plt.hist(valor_col, bins = 30, color = 'skyblue', edgecolor = 'black', alpha = 0.7)
-plt.axvline(media_valor, color = 'red', linestyle='--', linewidth = 2, label= f'Media = R${media_valor:.2f}')
-plt.axvline(mediana_valor, color = 'orange', linestyle='--', linewidth = 2, label= f'Mediana = R${mediana_valor:.2f}')
-plt.axvline(media_valor + std_valor, color = 'green', linestyle=':', linewidth = 2, label= f'+1 DP = R${media_valor + std_valor:.2f}')
-plt.axvline(media_valor - std_valor, color = 'green', linestyle=':', linewidth = 2, label= f'-1 DP = R${media_valor - std_valor:.2f}')
-plt.title('Distribuição dos Valores de Compra')
-plt.xlabel('Valor da Compra (R$)')
-plt.ylabel('Frequência')
-plt.legend()
-plt.grid(alpha = 0.3)
-plt.show()
+ch.hist_graphic(
+        valor_col=valor_col,
+        media_valor=media_valor,
+        mediana_valor=mediana_valor,
+        std_valor=std_valor,
+        xLabel='Valor da Compra (R$)',
+        yLabel='Frequência',
+        titulo='Distribuição dos Valores de Compra')
 
 #Filtro para visitantes que não compraram 
 visitantes_sem_compra = dados_ecommerce[dados_ecommerce[:,3]==0]
@@ -89,10 +86,7 @@ print("\n --- MATRIZ DE CORRELAÇÃO ---\n")
 print("[Visitas, Tempo, Itens, Valor]\n")
 print(np.round(matriz_correlacao,2))
 
-nomes_variaveis = ["Visitas", 
-                   "Tempo no Site", 
-                   "Itens no Carrinho", 
-                   "Valor da Compra"]
+nomes_variaveis = ["Visitas", "Tempo no Site", "Itens no Carrinho", "Valor da Compra"]
 
 #Converter para Dataframe
 df_correlacao = pd.DataFrame(matriz_correlacao,
@@ -100,7 +94,6 @@ df_correlacao = pd.DataFrame(matriz_correlacao,
                              columns = nomes_variaveis)
 
 #Matriz de correlação (mapa de calor)
-plt.figure(figsize=cfg.FIG_SIZE_HEATMAP)
-sns.heatmap(df_correlacao, annot = True, cmap = "Blues", fmt = ".2f")
-plt.title("Matriz de Correlação")
-plt.show()
+ch.heatmap_graphic(
+    dados=df_correlacao,
+    titulo="Matriz de Correlação")
