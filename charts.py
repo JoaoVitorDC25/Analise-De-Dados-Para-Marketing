@@ -14,6 +14,14 @@ def hist_graphic(
     figsize=cfg.FIG_SIZE_HIST,
     caminho=None):
     
+    '''
+        Gera um grafico di tipo histograma, indicando:
+        - valor_col
+        - media_valor
+        -
+    '''
+    
+    
     plt.figure(figsize=figsize)
     
     plt.hist(valor_col, bins = 30, color = 'skyblue', edgecolor = 'black', alpha = 0.7)
