@@ -5,7 +5,11 @@ import config as cfg
 def data_generator_ecommmerce() -> np.column_stack:
 
     '''
-        Gera uma base de dados de ecommerce
+        Gera uma base de dados de ecommerce e retorna:
+        - Numero de visitas;
+        - Tempo no site;
+        - Quantidade de itens no carrinho;
+        - Valor de compra.
     '''
         
     np.random.seed(cfg.SEED)
